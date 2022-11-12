@@ -8,10 +8,10 @@ public class Main {
         String[] products = {"Хлеб", "Яблоки", "Молоко"};
         int[] prices = {100, 200, 300};
         Basket basket = new Basket(products, prices);
-        File file = new File("basket.txt");
+        File file = new File("basket.bin");
 
         if (file.exists()) {
-            basket = Basket.loadFromTxtFile(file);
+            basket = Basket.loadFromBinFile(file);
             System.out.println("Корзина с покупками восстановлена из файла");
             basket.printCart();
         } else {
@@ -33,7 +33,7 @@ public class Main {
             int productNum = Integer.parseInt(parts[0]) - 1;
             int amount = Integer.parseInt(parts[1]);
             basket.addToCart(productNum, amount);
-            basket.saveTxt(file);
+            basket.saveBin(file, basket);
         }
         basket.printCart();
 
